@@ -106,7 +106,8 @@ class AddressBookController extends Controller
     public function edit($id)
     {
         $AddressBook = AddressBook::with('PhoneNumbers')->where('user_id', Auth::user()->id)->findOrFail($id);
-        return view('address_book.edit');
+        $PhoneTypes = PhoneType::all();
+        return view('address_book.edit', compact('AddressBook','PhoneTypes'));
     }
 
     /**
