@@ -1,0 +1,130 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 09/03/2017, 20:27:52
+    Author     : Renan
+*/
+
+footer.master{
+    background-color: #333333;
+    color: white;
+    width: 100%;
+    min-height: 60px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    clear: both;
+    position: relative;
+}
+
+@media screen and (min-width: 800px) {
+    .main-login{
+        max-width: 600px;
+        margin: 160px auto;
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 799px){
+    .main-login{
+        max-width: 400px;
+        margin: 100px auto;
+    }
+}
+
+@media screen and (max-width: 399px) {
+    .main-login{
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .container-height{
+        min-height: 576px;
+    }
+}
+
+@media screen and (min-width: 1366px) and (max-width: 1439px) {
+    .container-height{
+        min-height: 546px;
+    }
+}
+
+@media screen and (min-width: 1360px) and (max-width: 1365px) {
+    .container-height{
+        min-height: 544px;
+    }
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1359px) {
+    .container-height{
+        min-height: 512px;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+    .container-height{
+        min-height: 410px;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+    .container-height{
+        min-height: 410px;
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1023px) {
+    .container-height{
+        min-height: 320px;
+    }
+}
+
+@media screen and (max-width: 799px) {
+    .container-height{
+        min-height: 320px;
+    }
+}
+
+div.panel div.panel-heading h1, 
+div.panel div.panel-heading h2, 
+div.panel div.panel-heading h3, 
+div.panel div.panel-heading h4, 
+div.panel div.panel-heading h5 {
+    font-weight: bold !important;
+    display: inline;
+}
+
+.panel-heading-btn {
+    margin: -5px;
+    float: right;
+    display: inline-block;
+    text-align: right;
+}
+
+.panel-heading-btn .input-group {
+    max-width: 200px;
+}
+
+.loader30x30 {
+    background-image: url("../images/layout/loader.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+}
+
+p.form-control{
+    border: 0px;
+    margin-bottom: 0px;
+}
+
+hr.primary {
+    border-color: #3097D1;
+}
+
+.no-margin{
+    margin: 0px;
+}
