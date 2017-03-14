@@ -28,7 +28,7 @@
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
-                                            <a href="{{ route('agenda.inserir') }}">
+                                            <a href="{{ route('contact.create') }}">
                                                 <i class="fa fa-floppy-o" aria-hidden="true"></i> 
                                                 Novo contato
                                             </a>
@@ -56,7 +56,7 @@
                                 <td>{{ $AddressBook->name }}</td>
                                 <td>{{ $AddressBook->email }}</td>
                                 <td>
-                                    <a href="{{ route('agenda.detalhar', $AddressBook->id) }}" class="btn btn-primary">Detalhar</a> 
+                                    <a href="{{ route('contact.show', $AddressBook->id) }}" class="btn btn-primary">Detalhar</a> 
                                 </td>
                                 <td>
                                     <a href="" class="btn btn-danger">Excluir</a>

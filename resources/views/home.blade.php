@@ -66,7 +66,7 @@
         </div>
     </div>
 @else
-<a href="{{ url('agenda') }}" class="destaque"><h3 class="text-center text-primary">Prosiga para a agenda <i class="fa fa-arrow-right" aria-hidden="true"></i></h3></a>
+<a href="{{ url('contact') }}" class="destaque"><h3 class="text-center text-primary">Prosiga para a agenda <i class="fa fa-arrow-right" aria-hidden="true"></i></h3></a>
 @endif
 </div>
 @endsection

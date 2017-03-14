@@ -36,10 +36,10 @@
                         </li>
                         <li>
                             
-                            <a href="{{ route('agenda') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Agenda <span class="caret"></span></a>
+                            <a href="{{ route('contact') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Agenda <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ route('agenda') }}">Agenda</a></li>
-                                <li><a href="{{ route('agenda.inserir') }}">Inserir Contato</a></li>
+                                <li><a href="{{ route('contact') }}">Agenda</a></li>
+                                <li><a href="{{ route('contact.create') }}">Inserir Contato</a></li>
                             </ul>
                         </li>
                     </ul>

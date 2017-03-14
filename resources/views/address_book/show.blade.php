@@ -28,13 +28,13 @@
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
-                                            <a href="{{ route('agenda') }}">
+                                            <a href="{{ route('contact') }}">
                                                 <i class="fa fa-reply" aria-hidden="true"></i>
                                                 Voltar
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('agenda.editar', $AddressBook->id) }}">
+                                            <a href="{{ route('contact.edit', $AddressBook->id) }}">
                                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                 Editar
                                             </a>

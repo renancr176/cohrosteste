@@ -18,13 +18,13 @@ Route::get('/', ['as' => 'home', function () {
 }]);
 
 Route::group(['namespace' => 'AddressBook'], function () {
-    Route::get('agenda', ['as' => 'agenda', 'uses' => 'AddressBookController@index']);
-    Route::get('agenda/inserir', ['as' => 'agenda.inserir', 'uses' => 'AddressBookController@create']);
-    Route::post('agenda/inserir', ['as' => 'agenda.inserir.store', 'uses' => 'AddressBookController@store']);
-    Route::get('agenda/detalhar/{id}', ['as' => 'agenda.detalhar', 'uses' => 'AddressBookController@show']);
-    Route::get('agenda/editar/{id}', ['as' => 'agenda.editar', 'uses' => 'AddressBookController@edit']);
-    Route::post('/agenda/editar/{id}', ['as' => 'agenda.editar.update', 'uses' => 'AddressBookController@update']);
-    //Route::post('/agenda', ['as' => 'agenda.destroy', 'uses' => 'AddressBookController@destroy']);
+    Route::get('contact', ['as' => 'contact', 'uses' => 'AddressBookController@index']);
+    Route::get('contact/create', ['as' => 'contact.create', 'uses' => 'AddressBookController@create']);
+    Route::post('contact/create', ['as' => 'contact.store', 'uses' => 'AddressBookController@store']);
+    Route::get('contact/{id}', ['as' => 'contact.show', 'uses' => 'AddressBookController@show']);
+    Route::get('contact/{id}/edit', ['as' => 'contact.edit', 'uses' => 'AddressBookController@edit']);
+    Route::post('contact/{id}/edit', ['as' => 'contact.update', 'uses' => 'AddressBookController@update']);
+    Route::post('contact/{id}', ['as' => 'contact.destroy', 'uses' => 'AddressBookController@destroy']);
     
 });
 

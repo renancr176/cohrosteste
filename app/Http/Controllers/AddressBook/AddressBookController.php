@@ -82,7 +82,7 @@ class AddressBookController extends Controller
         }
       
         DB::commit();
-        return redirect('agenda')->with('AlertSuccess', '<p>Contato Craiado com sucesso!</p>');
+        return redirect('contact')->with('AlertSuccess', '<p>Contato Craiado com sucesso!</p>');
     }
 
     /**
@@ -94,8 +94,6 @@ class AddressBookController extends Controller
     public function show($id)
     {
         $AddressBook = AddressBook::with('PhoneNumbers')->where('user_id', Auth::user()->id)->findOrFail($id);
-        $PhoneType = PhoneType::all();
-        
         return view('address_book.show', compact('AddressBook','PhoneType'));
     }
 
@@ -107,6 +105,7 @@ class AddressBookController extends Controller
      */
     public function edit($id)
     {
+        $AddressBook = AddressBook::with('PhoneNumbers')->where('user_id', Auth::user()->id)->findOrFail($id);
         return view('address_book.edit');
     }
 

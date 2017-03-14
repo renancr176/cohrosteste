@@ -22,7 +22,7 @@
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
-                                            <a href="{{ route('agenda') }}">
+                                            <a href="{{ route('contact') }}">
                                                 <i class="fa fa-reply" aria-hidden="true"></i>
                                                 Voltar
                                             </a>
@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" name="mForm" action="{{ route('agenda.inserir.store') }}" method="post">
+                    <form class="form-horizontal" role="form" name="mForm" action="{{ route('contact.store') }}" method="post">
                         <fieldset>
                             {{ csrf_field() }}
                             <div class="row">
@@ -238,7 +238,7 @@
                                 <div class="col-xs-12">
                                     <div class="btn-group btn-group-justified" role="group" aria-label="...">
                                         <div class="btn-group" role="group">
-                                            <a href="{{ route('agenda') }}" class="btn btn-default"><strong>Cancelar</strong></a>
+                                            <a href="{{ route('contact') }}" class="btn btn-default"><strong>Cancelar</strong></a>
                                         </div>
                                         <div class="btn-group" role="group"></div>
                                         <div class="btn-group" role="group">
