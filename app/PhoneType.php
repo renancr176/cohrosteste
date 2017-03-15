@@ -23,6 +23,6 @@ class PhoneType extends Model
     
     public function PhoneNumbers()
     {
-        return $this->hasMany('App\PhoneNumber', 'phone_type_id');
+        return $this->hasMany('App\PhoneNumber');
     }
 }

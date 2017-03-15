@@ -22,7 +22,7 @@
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
-                                            <a href="{{ route('contact') }}">
+                                            <a href="{{ route('contact.show', $AddressBook->id) }}">
                                                 <i class="fa fa-reply" aria-hidden="true"></i>
                                                 Voltar
                                             </a>

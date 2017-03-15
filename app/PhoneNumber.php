@@ -25,10 +25,10 @@ class PhoneNumber extends Model
     
     public function AddressBook()
     {
-        $this->belongsTo('App\AddressBook', 'id');
+        $this->belongsTo('App\AddressBook');
     }
     
     public function PhoneType(){
-        return $this->belongsTo('App\PhoneType', 'id');
+        return $this->belongsTo('App\PhoneType');
     }
 }

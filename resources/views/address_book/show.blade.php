@@ -119,7 +119,7 @@
                         </div>
                     </div>
                     <hr class="primary"/>
-                    @if (count($AddressBook) > 0)
+                    @if (count($AddressBook->PhoneNumbers) > 0)
                     <ul class="list-group">
                         @foreach($AddressBook->PhoneNumbers as $PhoneNumber)
                             <li class="list-group-item">

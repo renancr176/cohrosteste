@@ -94,7 +94,7 @@ class AddressBookController extends Controller
     public function show($id)
     {
         $AddressBook = AddressBook::with('PhoneNumbers')->where('user_id', Auth::user()->id)->findOrFail($id);
-        return view('address_book.show', compact('AddressBook','PhoneType'));
+        return view('address_book.show', compact('AddressBook','PhoneTypes'));
     }
 
     /**
@@ -119,20 +119,55 @@ class AddressBookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $AddressBook = AddressBook::findOrFail($id);
-        
-        $AddressBook->name = $request->get('name');
-        $AddressBook->email = $request->get('email');
-        $AddressBook->zip_code = $request->get('zip_code');
-        $AddressBook->address = $request->get('address');
-        $AddressBook->number = $request->get('number');
-        $AddressBook->complement = $request->get('complement');
-        $AddressBook->district = $request->get('district');
-        $AddressBook->city = $request->get('city');
-        $AddressBook->state = $request->get('state');
-        
-        $AddressBook->save();
-        
+        $AddressBook = AddressBook::where('user_id', Auth::user()->id)->findOrFail($id);
+        DB::beginTransaction();
+        try {
+            $AddressBook->name = $request->get('name');
+            $AddressBook->email = $request->get('email');
+            $AddressBook->zip_code = $request->get('zip_code');
+            $AddressBook->address = $request->get('address');
+            $AddressBook->number = $request->get('number');
+            $AddressBook->complement = $request->get('complement');
+            $AddressBook->district = $request->get('district');
+            $AddressBook->city = $request->get('city');
+            $AddressBook->state = $request->get('state');
+            $AddressBook->save();
+            
+            /**
+             * Delete Phone Numbers
+             */
+            $PhoneNumbers = PhoneNumber::where('address_book_id', $AddressBook->id)->get();
+            foreach($PhoneNumbers as $PhoneNumber){
+                if(!in_array($PhoneNumber->id, $request->get('phone_id'))){
+                    $PhoneNumber->delete();
+                }
+            }
+            
+            /**
+             * Update or Create Phone Numbers
+             */
+            foreach($this->joinPhoneData($request->get('phone_type'), $request->get('phone'), $request->get('phone_id')) as $k => $PhoneData){
+                $PhoneNumber = PhoneNumber::where('address_book_id', $AddressBook->id)->find($PhoneData['phoneID']);
+                if(!is_null($PhoneNumber)){
+                    $PhoneNumber->phone_type_id = $PhoneData['phoneType'];
+                    $PhoneNumber->phone = $PhoneData['phoneNumber'];
+                    $PhoneNumber->save();
+                }else{
+                    $PhoneNumber = PhoneNumber::create([
+                        'address_book_id' => $AddressBook->id,
+                        'phone_type_id' => $PhoneData['phoneType'],
+                        'phone' => $PhoneData['phoneNumber']
+                    ]);
+                }
+            }
+            
+        } catch (Exception $e) {
+            DB::rollback();
+            return back()->withInput();
+        }
+      
+        DB::commit();
+        return redirect()->route('contact.show', ['id' => $id])->with('AlertSuccess', '<p>Contato Craiado com sucesso!</p>');
     }
 
     /**
@@ -147,10 +182,14 @@ class AddressBookController extends Controller
         $AddressBook->delete();
     }
     
-    public function joinPhoneData($PhoneTypes, $PhoneNumbers){
+    public function joinPhoneData($PhoneTypes, $PhoneNumbers, $PhoneID = array()){
         $Join = array();
         foreach($PhoneTypes as $k=>$PhoneType){
-            $Join[] = array('phoneType' => $PhoneType, 'phoneNumber' => $PhoneNumbers[$k]);
+            $Join[$k] = array(
+                                'phoneID' => ((array_key_exists($k, $PhoneID) && !empty($PhoneID[$k]))? $PhoneID[$k]:0), 
+                                'phoneType' => $PhoneType, 
+                                'phoneNumber' => $PhoneNumbers[$k]
+                            );
         }
         return $Join;
     }
