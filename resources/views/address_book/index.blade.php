@@ -74,8 +74,11 @@
                     </div>
                     @endif
                 </div>
-            </div>
-            <div class="panel-footer">
+                <div class="panel-footer text-center">
+                    @if (count($AddressBooks) > 0)
+                        {{ $AddressBooks->render() }}
+                    @endif
+                </div>
             </div>
         </div>
 

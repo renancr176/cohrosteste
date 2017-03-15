@@ -30,8 +30,7 @@ class AddressBookController extends Controller
      */
     public function index()
     {
-        $AddressBooks = AddressBook::where('user_id', Auth::user()->id)->get();      
-        
+        $AddressBooks = AddressBook::where('user_id', Auth::user()->id)->paginate(10);
         return view('address_book.index', compact('AddressBooks'));
     }
 
