@@ -139,4 +139,13 @@ $( document ).ready( function ()
             }
         });
     }
+    
+    if($("form#deleteContact").length > 0){
+        $("form#deleteContact").submit(function (e) {
+            e.preventDefault();
+            if(confirm("Tem certeza que deseja excluir este contato?")){
+                $(this).unbind('submit').submit();
+            }
+        });
+    }
 });

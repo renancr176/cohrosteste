@@ -59,7 +59,10 @@
                                     <a href="{{ route('contact.show', $AddressBook->id) }}" class="btn btn-primary">Detalhar</a> 
                                 </td>
                                 <td>
-                                    <a href="" class="btn btn-danger">Excluir</a>
+                                    <form action="{{ route('contact.destroy', $AddressBook->id) }}" method="post" id="deleteContact">
+                                        {{ csrf_field() }}
+                                        <button type="submit" class="btn btn-danger">Excluir</button>
+                                    </form>
                                 </td>
                             </tr>
                         </tbody>

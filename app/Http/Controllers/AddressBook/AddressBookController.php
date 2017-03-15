@@ -178,8 +178,20 @@ class AddressBookController extends Controller
      */
     public function destroy($id)
     {
-        $AddressBook = AddressBook::findOrFail($id);
-        $AddressBook->delete();
+        $AddressBook = AddressBook::where('user_id', Auth::user()->id)->findOrFail($id);
+        DB::beginTransaction();
+        try {
+            foreach($AddressBook->PhoneNumbers as $PhoneNumber){
+                $PhoneNumber->delete();
+            }
+            $AddressBook->delete();
+        } catch (Exception $e) {
+            DB::rollback();
+            return back()->withInput();
+        }
+      
+        DB::commit();
+        return redirect('contact')->with('AlertSuccess', '<p>Contato Excluido com sucesso!</p>');
     }
     
     public function joinPhoneData($PhoneTypes, $PhoneNumbers, $PhoneID = array()){
