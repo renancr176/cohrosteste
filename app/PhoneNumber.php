@@ -23,6 +23,12 @@ class PhoneNumber extends Model
         'updated_at'
     ];
     
+    public static $rules = [
+        'address_book_id' => 'required|numeric',
+        'phone_type_id' => 'required|numeric',
+        'phone' => 'required|min:10|max:15'
+    ];
+    
     public function AddressBook()
     {
         $this->belongsTo('App\AddressBook');

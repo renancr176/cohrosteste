@@ -21,6 +21,10 @@ class PhoneType extends Model
         'created_at'
     ];
     
+    public static $rules = [
+        'name' => 'required|alpha|max:191'
+    ];
+    
     public function PhoneNumbers()
     {
         return $this->hasMany('App\PhoneNumber');

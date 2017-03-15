@@ -29,6 +29,17 @@ class AddressBook extends Model
         'created_at',
         'created_at'
     ];
+    
+    public static $rules = [
+        'name' => 'required|max:191',
+        'email' => 'email|max:191',
+        'zip_code' => 'min:9|max:9',
+        'address' => 'max:191',
+        'number' => 'numeric',
+        'district' => 'max:191',
+        'city' => 'max:191',
+        'state' => 'max:2'
+    ];
 
 
     public function User()

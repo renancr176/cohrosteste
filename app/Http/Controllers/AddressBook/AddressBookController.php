@@ -10,6 +10,7 @@ use DB;
 use App\AddressBook;
 use App\PhoneNumber;
 use App\PhoneType;
+use App\Http\Requests\AddressBookRequest;
 
 class AddressBookController extends Controller
 {
@@ -51,7 +52,7 @@ class AddressBookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddressBookRequest $request)
     {
         DB::beginTransaction();
         try {
@@ -116,7 +117,7 @@ class AddressBookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AddressBookRequest $request, $id)
     {
         $AddressBook = AddressBook::where('user_id', Auth::user()->id)->findOrFail($id);
         DB::beginTransaction();
