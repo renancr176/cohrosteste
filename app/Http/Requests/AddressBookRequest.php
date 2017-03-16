@@ -24,6 +24,23 @@ class AddressBookRequest extends FormRequest
      */
     public function rules()
     {
-        return AddressBook::$rules;
+        $rules = [
+            'name' => 'required|max:191',
+            'address' => 'max:191',
+            'district' => 'max:191',
+            'city' => 'max:191',
+            'state' => 'max:2'
+        ];
+        if( !empty($this->request->get('email')) ){
+            $rules['email'] = 'email|max:191';
+        }
+        if( !empty($this->request->get('zip_code')) ){
+            $rules['zip_code'] = 'min:9|max:9';
+        }
+        if( !empty($this->request->get('number')) ){
+            $rules['number'] = 'numeric';
+        }   
+            
+        return $rules;
     }
 }

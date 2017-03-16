@@ -55,6 +55,13 @@ class AddressBookController extends Controller
      */
     public function store(AddressBookRequest $request)
     {
+        foreach($request->get('phone_type') as $k=>$v){
+            $this->validate($request, [
+                'phone_type.'.$k => 'numeric|exists:phone_types,id',
+                'phone.'.$k => 'min:10|max:15'
+            ]);
+        }
+        
         DB::beginTransaction();
         try {
             $AddressBook = AddressBook::create([
@@ -71,6 +78,7 @@ class AddressBookController extends Controller
             ]);
 
             foreach($this->joinPhoneData($request->get('phone_type'), $request->get('phone')) as $k => $PhoneData){
+                
                 $PhoneNumber = PhoneNumber::create([
                     'address_book_id' => $AddressBook->id,
                     'phone_type_id' => $PhoneData['phoneType'],
@@ -120,6 +128,14 @@ class AddressBookController extends Controller
      */
     public function update(AddressBookRequest $request, $id)
     {
+        foreach($request->get('phone_type') as $k=>$v){
+            $this->validate($request, [
+                'phone_type.'.$k => 'numeric|exists:phone_types,id',
+                'phone.'.$k => 'min:10|max:15',
+                'phone_id.'.$k => 'numeric|exists:phone_numbers,id'
+            ]);
+        }
+        
         $AddressBook = AddressBook::where('user_id', Auth::user()->id)->findOrFail($id);
         DB::beginTransaction();
         try {

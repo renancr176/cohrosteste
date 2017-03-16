@@ -177,6 +177,9 @@
                                                                             <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                                                                                 <div class="col-sm-10">
                                                                                     <input type="tel" name="phone[]" value="{{ $Phone }}" class="form-control phone" placeholder="Telefone" required>
+                                                                                    @if (!empty(old('phone_id')))
+                                                                                    <input type="hidden" name="phone_id[]" value="{{ old('phone_id.'.$k) }}">
+                                                                                    @endif
                                                                                 </div>
                                                                             </div>
                                                                         </div>
