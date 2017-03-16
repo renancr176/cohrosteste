@@ -90,10 +90,10 @@
                                                     <div class="form-group">
                                                         <label for="" class="col-sm-4 control-label">Complemento:</label>
                                                         <div class="col-sm-8">
-                                                            <input type="text" name="complemet" value="{{ (! empty($AddressBook) ? $AddressBook->complemet : old('complemet')) }}" class="form-control" id="complemet">
+                                                            <input type="text" name="complement" value="{{ (! empty($AddressBook) ? $AddressBook->complement : old('complement')) }}" class="form-control" id="complemet">
                                                             @if ($errors->has('complemet'))
                                                                 <span class="help-block">
-                                                                    <strong>{{ $errors->first('complemet') }}</strong>
+                                                                    <strong>{{ $errors->first('complement') }}</strong>
                                                                 </span>
                                                             @endif
                                                         </div>
@@ -153,13 +153,13 @@
                                                 <td>
                                                     <table class="table table-striped">
                                                         <tbody class="list-container">
-                                                        @if (!empty(old('phone')))
+                                                        @if (!empty(old('phone')) && ! $errors->has('phone_id.*'))
                                                             @foreach(old('phone') as $k => $Phone)
                                                             <tr class="list-row">
                                                                 <td>
                                                                     <div class="row">
                                                                         <div class="col-xs-6">
-                                                                            <div class="form-group {{ $errors->has('phone_type') ? ' has-error' : '' }}">
+                                                                            <div class="form-group {{ $errors->has('phone_type.'.$k) ? ' has-error' : '' }}">
                                                                                 <div class="col-sm-10">
                                                                                     <select name="phone_type[]" class="form-control" required>
                                                                                     @foreach ($PhoneTypes as $PhoneType)
@@ -174,7 +174,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-xs-6">
-                                                                            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                                                                            <div class="form-group{{ $errors->has('phone.'.$k) ? ' has-error' : '' }}">
                                                                                 <div class="col-sm-10">
                                                                                     <input type="tel" name="phone[]" value="{{ $Phone }}" class="form-control phone" placeholder="Telefone" required>
                                                                                     @if (!empty(old('phone_id')))

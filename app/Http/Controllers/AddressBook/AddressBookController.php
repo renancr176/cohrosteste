@@ -4,8 +4,6 @@ namespace App\Http\Controllers\AddressBook;
 
 use App\Http\Controllers\Controller;
 use Auth;
-use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
 use DB;
 use App\AddressBook;
 use App\PhoneNumber;
@@ -132,7 +130,7 @@ class AddressBookController extends Controller
             $this->validate($request, [
                 'phone_type.'.$k => 'numeric|exists:phone_types,id',
                 'phone.'.$k => 'min:10|max:15',
-                'phone_id.'.$k => 'numeric|exists:phone_numbers,id'
+                'phone_id.'.$k => 'sometimes|numeric|exists:phone_numbers,id'
             ]);
         }
         

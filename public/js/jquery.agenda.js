@@ -118,6 +118,7 @@ $( document ).ready( function ()
                 $.each(newRow.find('select'), function(){// force select the first option
                     $(this).val($(this).find('option:first').val()).trigger('change');
                 });
+                newRow.find("input[name^='phone_id']").remove();
                 dynamiclist.find('.'+settings.listContainerClass).append(newRow);
                 
                 $.each(dynamiclist.find('.phone'), function(){
