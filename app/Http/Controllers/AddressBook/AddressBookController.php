@@ -27,11 +27,12 @@ class AddressBookController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  int  $qtd
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $AddressBooks = AddressBook::where('user_id', Auth::user()->id)->paginate(10);
+        $AddressBooks = AddressBook::where('user_id', Auth::user()->id)->orderBy('name')->paginate(10);
         return view('address_book.index', compact('AddressBooks'));
     }
 
@@ -167,7 +168,7 @@ class AddressBookController extends Controller
         }
       
         DB::commit();
-        return redirect()->route('contact.show', ['id' => $id])->with('AlertSuccess', '<p>Contato Craiado com sucesso!</p>');
+        return redirect()->route('contact.show', ['id' => $id])->with('AlertSuccess', '<p>Contato Atualizado com sucesso!</p>');
     }
 
     /**

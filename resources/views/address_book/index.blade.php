@@ -15,6 +15,12 @@
                     {!! session('AlertSuccess') !!}
                 </div>
             @endif
+            @if (session('AlertDanger'))
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {!! session('AlertDanger') !!}
+                </div>
+            @endif
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title"><strong>Contatos</strong></h3>

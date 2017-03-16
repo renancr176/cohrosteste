@@ -32,10 +32,10 @@ class AddressBook extends Model
     
     public static $rules = [
         'name' => 'required|max:191',
-        'email' => 'email|max:191',
-        'zip_code' => 'min:9|max:9',
+        'email' => 'max:191', //There is no way yet to validate a nulable field for this reaon I can't could set the email validation.
+        'zip_code' => 'max:9',
         'address' => 'max:191',
-        'number' => 'numeric',
+        //'number' => 'numeric',
         'district' => 'max:191',
         'city' => 'max:191',
         'state' => 'max:2'

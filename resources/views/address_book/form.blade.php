@@ -22,7 +22,7 @@
                                             </a>
                                         </h4>
                                     </div>
-                                    <div id="collapseOne" class="panel-collapse collapse {{ (! empty($AddressBook) ? 'in':'') }}" role="tabpanel" aria-labelledby="headingOne">
+                                    <div id="collapseOne" class="panel-collapse collapse {{ (! empty($AddressBook) || ! $errors->isEmpty() ? 'in':'') }}" role="tabpanel" aria-labelledby="headingOne">
                                         <div class="panel-body">
                                             <div class="row">
                                                 <div class="col-xs-6">
@@ -153,7 +153,43 @@
                                                 <td>
                                                     <table class="table table-striped">
                                                         <tbody class="list-container">
-                                                        @if (!empty($AddressBook))
+                                                        @if (!empty(old('phone')))
+                                                            @foreach(old('phone') as $k => $Phone)
+                                                            <tr class="list-row">
+                                                                <td>
+                                                                    <div class="row">
+                                                                        <div class="col-xs-6">
+                                                                            <div class="form-group {{ $errors->has('phone_type') ? ' has-error' : '' }}">
+                                                                                <div class="col-sm-10">
+                                                                                    <select name="phone_type[]" class="form-control" required>
+                                                                                    @foreach ($PhoneTypes as $PhoneType)
+                                                                                        @if ($PhoneType->id == old('phone_type.'.$k))
+                                                                                        <option value="{{ $PhoneType->id }}" selected>{{ $PhoneType->name }}</option>
+                                                                                        @else
+                                                                                        <option value="{{ $PhoneType->id }}">{{ $PhoneType->name }}</option>
+                                                                                        @endif
+                                                                                    @endforeach
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-xs-6">
+                                                                            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                                                                                <div class="col-sm-10">
+                                                                                    <input type="tel" name="phone[]" value="{{ $Phone }}" class="form-control phone" placeholder="Telefone" required>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <button type="button" class="btn btn-danger btn-remove">
+                                                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                            @endforeach
+                                                        @elseif (!empty($AddressBook))
                                                             @foreach($AddressBook->PhoneNumbers as $PhoneNumber)
                                                             <tr class="list-row">
                                                                 <td>
