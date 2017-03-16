@@ -17,7 +17,7 @@ class CreateAddressBooksTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('name');
-            $table->string('email')->nullable();
+            $table->string('email')->nullable()->unique();
             $table->string('zip_code')->nullable();
             $table->string('address')->nullable();
             $table->string('number')->nullable();

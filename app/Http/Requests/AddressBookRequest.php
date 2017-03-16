@@ -32,7 +32,7 @@ class AddressBookRequest extends FormRequest
             'state' => 'max:2'
         ];
         if( !empty($this->request->get('email')) ){
-            $rules['email'] = 'email|max:191';
+            $rules['email'] = 'email|unique:address_books,email|max:191';
         }
         if( !empty($this->request->get('zip_code')) ){
             $rules['zip_code'] = 'min:9|max:9';
